@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CecyCafetería</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+
+<!-- ================================================= -->
+<!-- 1. INICIO DE SESIÓN -->
+<!-- ================================================= -->
+
+<section
+    id="pantallaLogin"
+    class="pantalla"
+>
+
+    <div class="login-container">
+
+        <h1>☕ CecyCafetería</h1>
+
+        <p>
+            Inicia sesión para realizar tu pedido
+        </p>
+
+
+        <form id="formLogin">
+
+            <label for="correo">
+                Correo electrónico
+            </label>
+
+            <input
+                type="email"
+                id="correo"
+                placeholder="ejemplo@correo.com"
+                required
+            >
+
+
+            <label for="contrasena">
+                Contraseña
+            </label>
+
+            <input
+                type="password"
+                id="contrasena"
+                placeholder="Escribe tu contraseña"
+                required
+            >
+
+
+            <button type="submit">
+                Iniciar sesión
+            </button>
+
+        </form>
+
+
+        <p class="texto-pequeno">
+
+            ¿No tienes una cuenta?
+
+            <button
+                type="button"
+                onclick="crearCuenta()"
+            >
+                Crear cuenta
+            </button>
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- 2. PANTALLA DE INICIO -->
+<!-- ================================================= -->
+
+<section
+    id="pantallaInicio"
+    class="pantalla oculto"
+>
+
+
+    <header class="encabezado">
+
+        <h1>
+            ☕ CecyCafetería
+        </h1>
+
+        <p>
+            Bienvenido a nuestra cafetería escolar
+        </p>
+
+    </header>
+
+
+
+    <main class="inicio-contenido">
+
+        <h2>
+            ¿A dónde vamos?
+        </h2>
+
+        <p>
+            Selecciona una opción para continuar
+        </p>
+
+
+        <div class="opciones">
+
+
+            <button
+                type="button"
+                onclick="mostrarPantalla('pantallaMenu')"
+            >
+
+                🍔
+
+                <span>
+                    Ir al menú
+                </span>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                onclick="mostrarPantalla('pantallaPedido')"
+            >
+
+                🛒
+
+                <span>
+                    Mi pedido
+                </span>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                onclick="mostrarPedidos()"
+            >
+
+                📋
+
+                <span>
+                    Mis pedidos
+                </span>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                onclick="mostrarHistorial()"
+            >
+
+                📜
+
+                <span>
+                    Historial
+                </span>
+
+            </button>
+
+        </div>
+
+
+
+        <button
+            type="button"
+            class="boton-salir"
+            onclick="cerrarSesion()"
+        >
+
+            🚪 Cerrar sesión
+
+        </button>
+
+    </main>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- 3. MENÚ -->
+<!-- ================================================= -->
+
+<section
+    id="pantallaMenu"
+    class="pantalla oculto"
+>
+
+
+    <header class="encabezado">
+
+
+        <button
+            type="button"
+            class="boton-volver"
+            onclick="mostrarPantalla('pantallaInicio')"
+        >
+
+            ← Volver
+
+        </button>
+
+
+        <h1>
+            🍔 Nuestro menú
+        </h1>
+
+
+        <p>
+            Elige una categoría para ver nuestros productos
+        </p>
+
+    </header>
+
+
+
+    <main>
+
+        <!--
+            IMPORTANTE:
+
+            El contenido de este div se genera
+            automáticamente desde script.js
+            utilizando el objeto "categorias".
+        -->
+
+        <div class="menu"></div>
+
+    </main>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- 4. MI PEDIDO -->
+<!-- ================================================= -->
+
+<section
+    id="pantallaPedido"
+    class="pantalla oculto"
+>
+
+
+    <header class="encabezado">
+
+
+        <button
+            type="button"
+            class="boton-volver"
+            onclick="mostrarPantalla('pantallaInicio')"
+        >
+
+            ← Volver
+
+        </button>
+
+
+        <h1>
+            🛒 Mi pedido
+        </h1>
+
+
+        <p>
+            Revisa los productos que has seleccionado
+        </p>
+
+    </header>
+
+
+
+    <main class="contenido-pedido">
+
+
+        <div class="ticket">
+
+
+            <h2>
+                Resumen de tu pedido
+            </h2>
+
+
+            <div
+                id="listaPedido"
+                class="lista-pedido"
+            >
+
+                <p>
+                    Aún no has agregado productos.
+                </p>
+
+            </div>
+
+
+            <div class="separador"></div>
+
+
+            <div class="total-pedido">
+
+                <strong>
+                    Total:
+                </strong>
+
+                <span>
+                    $<span id="total">0</span>
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="boton-confirmar"
+                onclick="confirmarPedido()"
+            >
+
+                ✅ Confirmar pedido
+
+            </button>
+
+        </div>
+
+    </main>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- 5. CONFIRMACIÓN / PREPARACIÓN -->
+<!-- ================================================= -->
+
+<section
+    id="pantallaConfirmacion"
+    class="pantalla oculto"
+>
+
+
+    <header class="encabezado">
+
+        <h1>
+            🧾 Estado de tu pedido
+        </h1>
+
+        <p>
+            Consulta el estado de tu compra
+        </p>
+
+    </header>
+
+
+
+    <main class="contenido-confirmacion">
+
+
+        <div class="confirmacion">
+
+
+            <div class="icono-estado">
+
+                <span id="iconoEstado">
+                    🟡
+                </span>
+
+            </div>
+
+
+            <h2 id="tituloEstado">
+                ¡Pedido recibido!
+            </h2>
+
+
+            <p id="mensajeEstado">
+                Tu pedido está siendo preparado.
+            </p>
+
+
+            <p class="numero-pedido">
+
+                Pedido #
+
+                <strong id="numeroPedido">
+                    000
+                </strong>
+
+            </p>
+
+
+            <div class="detalle-pedido">
+
+
+                <h3>
+                    Productos
+                </h3>
+
+
+                <div id="resumenPreparacion"></div>
+
+
+                <div class="separador"></div>
+
+
+                <p>
+
+                    <strong>
+                        Total:
+                    </strong>
+
+                    $<span id="totalPreparacion">
+                        0
+                    </span>
+
+                </p>
+
+            </div>
+
+
+
+            <!-- ESTADO PREPARANDO -->
+
+            <div
+                id="estadoPreparando"
+            >
+
+                <p>
+                    ⏳ Preparando tu pedido...
+                </p>
+
+
+                <div class="barra-progreso">
+
+                    <div
+                        id="barraProgreso"
+                        class="progreso"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ESTADO ENTREGADO -->
+
+            <div
+                id="estadoEntregado"
+                class="oculto"
+            >
+
+                <p>
+                    🎉 ¡Tu pedido está listo!
+                </p>
+
+            </div>
+
+
+
+            <button
+                type="button"
+                id="botonTicket"
+                class="oculto boton-continuar"
+                onclick="mostrarTicket()"
+            >
+
+                🎟️ Ver ticket
+
+            </button>
+
+
+        </div>
+
+    </main>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- 6. TICKET FINAL -->
+<!-- ================================================= -->
+
+<section
+    id="pantallaTicket"
+    class="pantalla oculto"
+>
+
+
+    <header class="encabezado">
+
+        <h1>
+            🎟️ Ticket de compra
+        </h1>
+
+        <p>
+            Gracias por comprar en CecyCafetería
+        </p>
+
+    </header>
+
+
+
+    <main class="contenido-ticket">
+
+
+        <div class="ticket-final">
+
+
+            <h2>
+                CecyCafetería
+            </h2>
+
+
+            <p>
+                Ticket de compra
+            </p>
+
+
+            <div class="separador"></div>
+
+
+            <div class="informacion-ticket">
+
+                <p>
+
+                    <strong>
+                        Pedido:
+                    </strong>
+
+                    #
+
+                    <span id="numeroTicket">
+                        000
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Fecha:
+                    </strong>
+
+                    <span id="fechaTicket">
+                        --
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Hora:
+                    </strong>
+
+                    <span id="horaTicket">
+                        --
+                    </span>
+
+                </p>
+
+            </div>
+
+
+            <div class="separador"></div>
+
+
+            <h3>
+                Productos
+            </h3>
+
+
+            <div
+                id="resumenTicket"
+                class="resumen-ticket"
+            ></div>
+
+
+            <div class="separador"></div>
+
+
+            <div class="total-ticket">
+
+                <strong>
+                    Total:
+                </strong>
+
+                <strong>
+
+                    $<span id="totalTicket">
+                        0
+                    </span>
+
+                </strong>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="boton-continuar"
+                onclick="finalizarPedido()"
+            >
+
+                🏠 Volver al inicio
+
+            </button>
+
+        </div>
+
+    </main>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- 7. MIS PEDIDOS -->
+<!-- ================================================= -->
+
+<section
+    id="pantallaPedidos"
+    class="pantalla oculto"
+>
+
+
+    <header class="encabezado">
+
+
+        <button
+            type="button"
+            class="boton-volver"
+            onclick="mostrarPantalla('pantallaInicio')"
+        >
+
+            ← Volver
+
+        </button>
+
+
+        <h1>
+            📋 Mis pedidos
+        </h1>
+
+
+        <p>
+            Consulta tus pedidos realizados
+        </p>
+
+    </header>
+
+
+
+    <main class="contenido-pedidos">
+
+
+        <div
+            id="listaPedidos"
+            class="lista-pedidos"
+        >
+
+            <p>
+                Todavía no tienes pedidos.
+            </p>
+
+        </div>
+
+    </main>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- 8. HISTORIAL -->
+<!-- ================================================= -->
+
+<section
+    id="pantallaHistorial"
+    class="pantalla oculto"
+>
+
+
+    <header class="encabezado">
+
+
+        <button
+            type="button"
+            class="boton-volver"
+            onclick="mostrarPantalla('pantallaInicio')"
+        >
+
+            ← Volver
+
+        </button>
+
+
+        <h1>
+            📜 Historial
+        </h1>
+
+
+        <p>
+            Consulta el historial de tus pedidos
+        </p>
+
+    </header>
+
+
+
+    <main class="contenido-historial">
+
+
+        <div
+            id="listaHistorial"
+            class="lista-historial"
+        >
+
+            <p>
+                No hay pedidos en el historial.
+            </p>
+
+        </div>
+
+    </main>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================================= -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>

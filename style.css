@@ -1,0 +1,1086 @@
+/* =========================================================
+   CECYCAFETERÍA
+   DISEÑO COMPLETO DE LA APLICACIÓN
+   Compatible con index.html + script.js
+========================================================= */
+
+:root {
+    --verde: #176b45;
+    --verde-oscuro: #105536;
+    --verde-medio: #23865a;
+    --verde-claro: #dff3e6;
+    --verde-suave: #eef8f1;
+    --crema: #fffdf8;
+    --blanco: #ffffff;
+    --texto: #26332c;
+    --gris: #68736d;
+    --borde: #dce9e0;
+    --sombra: 0 10px 30px rgba(23, 107, 69, 0.10);
+    --sombra-fuerte: 0 15px 35px rgba(23, 107, 69, 0.16);
+}
+
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--crema);
+    color: var(--texto);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================================
+   PANTALLAS
+========================================================= */
+
+/* Todas las pantallas están ocultas por defecto */
+.pantalla {
+    display: none;
+    min-height: 100vh;
+}
+
+/* La pantalla que NO tenga oculto sí se muestra */
+.pantalla:not(.oculto) {
+    display: block;
+}
+
+/* Ocultar elementos */
+.oculto {
+    display: none !important;
+}
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+#pantallaLogin {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            #dff3e6 0 120px,
+            transparent 121px
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            #e7f5eb 0 160px,
+            transparent 161px
+        ),
+        var(--crema);
+}
+
+.login-container {
+    width: 100%;
+    max-width: 430px;
+    background: var(--blanco);
+    padding: 42px 38px;
+    border: 2px solid var(--borde);
+    border-top: 7px solid var(--verde);
+    border-radius: 28px;
+    box-shadow: var(--sombra-fuerte);
+    text-align: center;
+}
+
+.login-container h1 {
+    color: var(--verde);
+    font-size: 34px;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.login-container > p {
+    color: var(--gris);
+    margin-bottom: 28px;
+    line-height: 1.5;
+}
+
+#formLogin {
+    text-align: left;
+}
+
+#formLogin label {
+    display: block;
+    margin: 16px 0 7px;
+    color: var(--texto);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+#formLogin input {
+    width: 100%;
+    padding: 14px 15px;
+    border: 2px solid var(--borde);
+    border-radius: 13px;
+    outline: none;
+    background: #fbfefc;
+    color: var(--texto);
+    font-size: 15px;
+    transition: 0.2s ease;
+}
+
+#formLogin input:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 4px rgba(23, 107, 69, 0.10);
+}
+
+#formLogin button {
+    width: 100%;
+    margin-top: 24px;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    background: var(--verde);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#formLogin button:hover {
+    background: var(--verde-oscuro);
+    transform: translateY(-2px);
+}
+
+.texto-pequeno {
+    font-size: 14px;
+    margin-top: 22px !important;
+}
+
+.texto-pequeno button {
+    border: none;
+    background: none;
+    color: var(--verde);
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* =========================================================
+   ENCABEZADOS
+========================================================= */
+
+.encabezado {
+    position: relative;
+    overflow: hidden;
+
+    background: var(--verde);
+    color: white;
+
+    padding: 28px 35px 34px;
+
+    border-radius: 0 0 32px 32px;
+
+    box-shadow: 0 8px 25px rgba(23, 107, 69, 0.18);
+}
+
+/* Decoraciones */
+.encabezado::before {
+    content: "";
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    top: -120px;
+    left: -60px;
+}
+
+.encabezado::after {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    right: -80px;
+    bottom: -145px;
+}
+
+.encabezado h1,
+.encabezado p,
+.encabezado button {
+    position: relative;
+    z-index: 2;
+}
+
+.encabezado h1 {
+    max-width: 1100px;
+    margin: 18px auto 8px;
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.encabezado p {
+    max-width: 1100px;
+    margin: 0 auto;
+    opacity: 0.92;
+    font-size: 15px;
+}
+
+/* =========================================================
+   BOTÓN VOLVER
+========================================================= */
+
+.boton-volver {
+    display: inline-block;
+
+    border: none;
+    background: white;
+    color: var(--verde);
+
+    padding: 10px 17px;
+    border-radius: 13px;
+
+    font-weight: 700;
+    cursor: pointer;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+    transition: 0.2s ease;
+}
+
+.boton-volver:hover {
+    background: var(--verde-suave);
+    transform: translateX(-3px);
+}
+
+/* =========================================================
+   INICIO
+========================================================= */
+
+.inicio-contenido {
+    width: 100%;
+    max-width: 1050px;
+    margin: auto;
+    padding: 55px 25px;
+}
+
+.inicio-contenido h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.inicio-contenido > p {
+    text-align: center;
+    color: var(--gris);
+    margin-bottom: 32px;
+}
+
+/* =========================================================
+   OPCIONES DEL INICIO
+========================================================= */
+
+.opciones {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.opciones button {
+    position: relative;
+    overflow: hidden;
+
+    min-height: 125px;
+
+    border: 2px solid var(--borde);
+    border-radius: 23px;
+
+    background: white;
+    color: var(--texto);
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: var(--sombra);
+    transition: 0.25s ease;
+}
+
+.opciones button:hover {
+    transform: translateY(-6px);
+    border-color: #afd2bd;
+    box-shadow: var(--sombra-fuerte);
+    color: var(--verde);
+}
+
+.opciones button::after {
+    content: "";
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+    background: var(--verde-suave);
+
+    right: -30px;
+    bottom: -35px;
+
+    z-index: 0;
+}
+
+.opciones button span {
+    position: relative;
+    z-index: 2;
+}
+
+.boton-salir {
+    display: block;
+    margin: 30px auto 0;
+
+    padding: 12px 22px;
+
+    border: 2px solid #e1e8e3;
+    border-radius: 13px;
+
+    background: white;
+    color: #68736d;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.boton-salir:hover {
+    border-color: #c5d2ca;
+    color: #3f4b44;
+}
+
+/* =========================================================
+   CONTENEDOR DEL MENÚ
+========================================================= */
+
+#pantallaMenu main {
+    width: 100%;
+    max-width: 1150px;
+    margin: auto;
+    padding: 45px 25px 60px;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 23px;
+}
+
+/* =========================================================
+   TARJETAS DE CATEGORÍAS
+========================================================= */
+
+.categoria {
+    position: relative;
+    overflow: hidden;
+
+    background: white;
+
+    border: 2px solid var(--borde);
+    border-radius: 25px;
+
+    padding: 27px 20px;
+
+    text-align: center;
+
+    box-shadow: var(--sombra);
+
+    transition: 0.25s ease;
+}
+
+.categoria::before {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 6px;
+
+    background: var(--verde);
+}
+
+.categoria:hover {
+    transform: translateY(-7px);
+    border-color: #b7d7c4;
+    box-shadow: var(--sombra-fuerte);
+}
+
+.categoria-icono {
+    width: 90px;
+    height: 90px;
+
+    margin: 5px auto 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--verde-claro);
+    border: 7px solid #f5fbf7;
+
+    box-shadow: 0 5px 14px rgba(23, 107, 69, 0.10);
+
+    overflow: hidden;
+}
+
+.categoria-icono img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.categoria h3 {
+    font-size: 19px;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.categoria button {
+    border: none;
+
+    padding: 11px 17px;
+
+    border-radius: 13px;
+
+    background: var(--verde);
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.categoria button:hover {
+    background: var(--verde-oscuro);
+}
+
+/* =========================================================
+   TARJETAS DE PRODUCTOS
+========================================================= */
+
+.producto {
+    position: relative;
+    overflow: hidden;
+
+    background: white;
+
+    border: 2px solid var(--borde);
+    border-radius: 23px;
+
+    box-shadow: var(--sombra);
+
+    text-align: center;
+
+    transition: 0.25s ease;
+}
+
+.producto::before {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 6px;
+
+    background: var(--verde);
+
+    z-index: 2;
+}
+
+.producto:hover {
+    transform: translateY(-7px);
+    box-shadow: var(--sombra-fuerte);
+    border-color: #b7d7c4;
+}
+
+.imagen-producto {
+    width: 100%;
+    height: 200px;
+
+    background: var(--verde-suave);
+
+    overflow: hidden;
+}
+
+.imagen-producto img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.3s ease;
+}
+
+.producto:hover .imagen-producto img {
+    transform: scale(1.05);
+}
+
+.producto h3 {
+    padding: 18px 15px 7px;
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.producto .descripcion {
+    padding: 0 15px;
+
+    color: var(--gris);
+    font-size: 14px;
+}
+
+.precio {
+    display: block;
+
+    padding: 12px 15px 4px;
+
+    color: var(--verde);
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.producto button {
+    margin: 10px 15px 20px;
+
+    border: none;
+
+    padding: 11px 18px;
+
+    border-radius: 13px;
+
+    background: var(--verde);
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.producto button:hover {
+    background: var(--verde-oscuro);
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   PEDIDO
+========================================================= */
+
+.contenido-pedido,
+.contenido-confirmacion,
+.contenido-ticket {
+    width: 100%;
+    max-width: 850px;
+    margin: auto;
+    padding: 45px 25px 60px;
+}
+
+.ticket {
+    background: white;
+
+    border: 2px solid var(--borde);
+    border-radius: 25px;
+
+    padding: 30px;
+
+    box-shadow: var(--sombra);
+}
+
+.ticket h2 {
+    margin-bottom: 25px;
+    color: var(--verde);
+}
+
+/* Lista del pedido */
+.lista-pedido {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lista-pedido > div {
+    padding: 15px;
+
+    background: var(--verde-suave);
+
+    border: 1px solid #d7e9dd;
+    border-radius: 14px;
+}
+
+/* Separadores */
+.separador {
+    width: 100%;
+    height: 1px;
+
+    margin: 22px 0;
+
+    background: var(--borde);
+}
+
+/* Total */
+.total-pedido,
+.total-ticket {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 21px;
+
+    margin-top: 10px;
+}
+
+.total-pedido span,
+.total-ticket strong:last-child {
+    color: var(--verde);
+}
+
+/* Botón confirmar */
+.boton-confirmar {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: var(--verde);
+    color: white;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.boton-confirmar:hover {
+    background: var(--verde-oscuro);
+}
+
+/* =========================================================
+   CONFIRMACIÓN / ESTADO DEL PEDIDO
+========================================================= */
+
+.confirmacion {
+    background: white;
+
+    border: 2px solid var(--borde);
+    border-radius: 25px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    box-shadow: var(--sombra);
+}
+
+.icono-estado {
+    width: 80px;
+    height: 80px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--verde-claro);
+
+    font-size: 38px;
+}
+
+.confirmacion h2 {
+    color: var(--verde);
+    margin-bottom: 10px;
+}
+
+.confirmacion > p {
+    color: var(--gris);
+}
+
+.numero-pedido {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+.numero-pedido strong {
+    color: var(--verde);
+}
+
+.detalle-pedido {
+    text-align: left;
+
+    background: var(--verde-suave);
+
+    border: 1px solid #d7e9dd;
+
+    border-radius: 17px;
+
+    padding: 20px;
+
+    margin-top: 25px;
+}
+
+.detalle-pedido h3 {
+    margin-bottom: 15px;
+    color: var(--verde);
+}
+
+#estadoPreparando {
+    margin-top: 25px;
+}
+
+.barra-progreso {
+    width: 100%;
+    height: 13px;
+
+    margin-top: 12px;
+
+    background: #e2eee6;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.progreso {
+    width: 0%;
+    height: 100%;
+
+    background: var(--verde);
+
+    border-radius: 20px;
+
+    transition: width 0.3s linear;
+}
+
+#estadoEntregado {
+    margin-top: 25px;
+
+    padding: 15px;
+
+    border-radius: 14px;
+
+    background: var(--verde-claro);
+    color: var(--verde);
+
+    font-weight: 700;
+}
+
+.boton-continuar {
+    border: none;
+
+    margin-top: 25px;
+
+    padding: 13px 22px;
+
+    border-radius: 14px;
+
+    background: var(--verde);
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.boton-continuar:hover {
+    background: var(--verde-oscuro);
+}
+
+/* =========================================================
+   TICKET FINAL
+========================================================= */
+
+.ticket-final {
+    background: white;
+
+    border: 2px solid var(--borde);
+    border-radius: 25px;
+
+    padding: 35px;
+
+    box-shadow: var(--sombra);
+
+    text-align: center;
+}
+
+.ticket-final h2 {
+    color: var(--verde);
+    font-size: 29px;
+}
+
+.ticket-final > p {
+    color: var(--gris);
+    margin-top: 5px;
+}
+
+.informacion-ticket {
+    text-align: left;
+    line-height: 1.8;
+}
+
+.resumen-ticket {
+    text-align: left;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* =========================================================
+   PEDIDOS E HISTORIAL
+========================================================= */
+
+.contenido-pedidos,
+.contenido-historial {
+    width: 100%;
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding: 45px 25px 60px;
+}
+
+.lista-pedidos,
+.lista-historial {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.lista-pedidos > div,
+.lista-historial > div {
+    background: white;
+
+    border: 2px solid var(--borde);
+    border-radius: 20px;
+
+    padding: 22px;
+
+    box-shadow: var(--sombra);
+
+    transition: 0.2s ease;
+}
+
+.lista-pedidos > div:hover,
+.lista-historial > div:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-fuerte);
+}
+
+/* =========================================================
+   ESTADOS DE PAGO / PEDIDO
+========================================================= */
+
+.estado-pago,
+.estado {
+    display: inline-block;
+
+    padding: 6px 11px;
+
+    margin-top: 8px;
+
+    border-radius: 10px;
+
+    background: var(--verde-claro);
+    color: var(--verde);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   BOTONES GENERALES
+========================================================= */
+
+button {
+    font-family: inherit;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(35, 134, 90, 0.25);
+}
+
+/* =========================================================
+   ANIMACIONES
+========================================================= */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pantalla:not(.oculto) {
+    animation: aparecer 0.25s ease;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .opciones {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .menu {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .encabezado h1 {
+        font-size: 30px;
+    }
+}
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    #pantallaLogin {
+        padding: 20px 15px;
+    }
+
+    .login-container {
+        padding: 32px 22px;
+        border-radius: 23px;
+    }
+
+    .login-container h1 {
+        font-size: 28px;
+    }
+
+    .encabezado {
+        padding: 22px 18px 28px;
+        border-radius: 0 0 25px 25px;
+    }
+
+    .encabezado h1 {
+        font-size: 27px;
+        margin-top: 17px;
+    }
+
+    .encabezado p {
+        font-size: 14px;
+    }
+
+    .inicio-contenido {
+        padding: 38px 18px;
+    }
+
+    .inicio-contenido h2 {
+        font-size: 27px;
+    }
+
+    .opciones {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .opciones button {
+        min-height: 90px;
+    }
+
+    #pantallaMenu main {
+        padding: 30px 15px 45px;
+    }
+
+    .menu {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .categoria {
+        padding: 25px 18px;
+    }
+
+    .imagen-producto {
+        height: 210px;
+    }
+
+    .contenido-pedido,
+    .contenido-confirmacion,
+    .contenido-ticket,
+    .contenido-pedidos,
+    .contenido-historial {
+        padding: 30px 15px 45px;
+    }
+
+    .ticket,
+    .confirmacion,
+    .ticket-final {
+        padding: 23px 18px;
+        border-radius: 21px;
+    }
+
+    .total-pedido,
+    .total-ticket {
+        font-size: 19px;
+    }
+}
+
+/* =========================================================
+   PANTALLA MUY PEQUEÑA
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .login-container h1 {
+        font-size: 25px;
+    }
+
+    .encabezado h1 {
+        font-size: 24px;
+    }
+
+    .producto h3 {
+        font-size: 18px;
+    }
+
+    .precio {
+        font-size: 22px;
+    }
+}
